@@ -1,0 +1,2 @@
+# data-pagination-and-filtering-02
+ A list of students displayed using pagination to enhance the usability of the web page.  A list of 42 students that contain information, including name, email, and picture. Using JavaScript, nine students will be displayed per page, and navigation buttons, also known as pagination buttons, will be added for the user to click to display different pages of students. For scalability, the app will work with a list of any number of students, not just 42.
