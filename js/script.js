@@ -6,16 +6,14 @@ const header = document.querySelector("header");
 /*
 Create and insert search bar
 */
-function showSearch() {
-  header.insertAdjacentHTML(
-    "beforeend",
-    `<label for="search" class="student-search">
-  <span>Search by name</span>
-  <input id="search" placeholder="Search by name...">
-  <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-</label>`
-  );
-}
+header.insertAdjacentHTML(
+  "beforeend",
+  `<label for="search" class="student-search">
+   <span>Search by name</span>
+   <input id="search" placeholder="Search by name...">
+   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+   </label>`
+);
 
 /*
 Create and insert/append the elements needed to display a "page" of nine students
@@ -29,6 +27,7 @@ function showPage(list, page) {
     // assigning to info to variables for readability
     let firstName = list[i].name.first;
     let lastName = list[i].name.last;
+    let fullName = `${firstName} ${lastName}`;
     let picture = list[i].picture.large;
     let email = list[i].email;
     let register = list[i].registered.date;
@@ -40,7 +39,7 @@ function showPage(list, page) {
        <li class="student-item cf">
        <div class="student-details">
          <img class="avatar" src="${picture}" alt="Profile Picture">
-         <h3>${firstName} ${lastName}</h3>
+         <h3>${fullName}</h3>
          <span class="email">${email}</span>
        </div>
        <div class="joined-details">
@@ -51,6 +50,33 @@ function showPage(list, page) {
     }
   }
 }
+
+/*
+filter search
+*/
+
+const input = document.querySelector("#search");
+const studentCard = document.querySelectorAll(".student-details");
+console.log(studentCard);
+
+function filterSearch(searchInput, list) {
+  console.log(searchInput.value);
+  console.log(list);
+  for (let i = 0; i < list.length; i++) {
+    let firstName = list[i].name.first;
+    let lastName = list[i].name.last;
+    let fullName = `${firstName} ${lastName}`;
+    if (fullName.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      studentCard.style.display = "none";
+    }
+  }
+}
+
+search.addEventListener("keyup", () => {
+  filterSearch(search, data);
+
+  console.log("Keyup function is working");
+});
 
 /*
 Create and insert/append the elements needed for the pagination buttons
@@ -70,7 +96,6 @@ function addPagination(list) {
 }
 
 // Call functions
-showSearch();
 showPage(data, 1);
 addPagination(data);
 
@@ -92,6 +117,8 @@ linkList.addEventListener("click", (e) => {
 /*
 Filter student data, displays only students whose names includes search.value
 */
+
+/*
 const search = document.querySelector("#search");
 console.log(search);
 console.log(search.value);
@@ -112,13 +139,16 @@ function filterStudents(list, page) {
 }
 
 // search.addEventListener("keyup", filterStudents(data));
-search.addEventListener("keyup", test);
+
+for (let i = 0; i < list.length; i++) {
+  console.log(list[i]);
+
+  search.addEventListener("keyup", test);
+}
 
 function test(data) {
   console.log(search.value);
   console.log(data);
-  //   for (let i = 0; i < list.length; i++) {
-  //     console.log(list[i]);
-  //   }
 }
 test(data);
+*/
