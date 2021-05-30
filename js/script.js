@@ -55,10 +55,6 @@ function showPage(list, page) {
 filter search
 */
 
-const input = document.querySelector("#search");
-const studentCard = document.querySelectorAll(".student-details");
-console.log(studentCard);
-
 function filterSearch(searchInput, list) {
   console.log(searchInput.value);
   console.log(list);
@@ -67,7 +63,7 @@ function filterSearch(searchInput, list) {
     let lastName = list[i].name.last;
     let fullName = `${firstName} ${lastName}`;
     if (fullName.toLowerCase().includes(searchInput.value.toLowerCase())) {
-      studentCard.style.display = "none";
+      console.log(fullName);
     }
   }
 }
