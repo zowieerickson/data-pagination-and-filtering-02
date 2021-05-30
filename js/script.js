@@ -1,6 +1,21 @@
 // Selectors
 const studentList = document.querySelector(".student-list");
 const linkList = document.querySelector(".link-list");
+const header = document.querySelector("header");
+
+/*
+Create and insert search bar
+*/
+function showHeader() {
+  header.insertAdjacentHTML(
+    "beforeend",
+    `<label for="search" class="student-search">
+  <span>Search by name</span>
+  <input id="search" placeholder="Search by name...">
+  <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+</label>`
+  );
+}
 
 /*
 Create and insert/append the elements needed to display a "page" of nine students
@@ -9,6 +24,7 @@ function showPage(list, page) {
   const startIndex = page * 9 - 9;
   const endIndex = page * 9;
   studentList.innerHTML = "";
+  console.log(list);
 
   for (let i = 0; i < list.length; i++) {
     // assigning to info to variables for readability
@@ -68,5 +84,6 @@ linkList.addEventListener("click", (e) => {
 });
 
 // Call functions
+showHeader();
 showPage(data, 1);
 addPagination(data);
