@@ -6,7 +6,7 @@ const header = document.querySelector("header");
 /*
 Create and insert search bar
 */
-function showHeader() {
+function showSearch() {
   header.insertAdjacentHTML(
     "beforeend",
     `<label for="search" class="student-search">
@@ -24,7 +24,6 @@ function showPage(list, page) {
   const startIndex = page * 9 - 9;
   const endIndex = page * 9;
   studentList.innerHTML = "";
-  console.log(list);
 
   for (let i = 0; i < list.length; i++) {
     // assigning to info to variables for readability
@@ -70,6 +69,13 @@ function addPagination(list) {
   }
 }
 
+// Call functions
+showSearch();
+showPage(data, 1);
+addPagination(data);
+
+// Event Listeners
+
 // removes/adds active class
 // displays corresponding list to button #
 linkList.addEventListener("click", (e) => {
@@ -83,7 +89,36 @@ linkList.addEventListener("click", (e) => {
   }
 });
 
-// Call functions
-showHeader();
-showPage(data, 1);
-addPagination(data);
+/*
+Filter student data, displays only students whose names includes search.value
+*/
+const search = document.querySelector("#search");
+console.log(search);
+console.log(search.value);
+
+function filterStudents(list, page) {
+  let text = search.value;
+  console.log(text);
+  console.log(list);
+  for (let i = 0; i < list.length; i++) {
+    let firstName = list[i].name.first;
+    let lastName = list[i].name.last;
+    let fullName = `${firstName[i]} ${lastName[i]}`;
+    //  console.log(firstName);
+    //  if (firstName.includes(text)) {
+    //    console.log(firstName);
+    //  }
+  }
+}
+
+// search.addEventListener("keyup", filterStudents(data));
+search.addEventListener("keyup", test);
+
+function test(data) {
+  console.log(search.value);
+  console.log(data);
+  //   for (let i = 0; i < list.length; i++) {
+  //     console.log(list[i]);
+  //   }
+}
+test(data);
