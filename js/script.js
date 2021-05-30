@@ -60,12 +60,12 @@ linkList.addEventListener("click", (e) => {
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList = "";
       e.target.classList = "active";
-      showPage(data, i);
     }
+    showPage(data, e.target.innerHTML);
   }
 });
 
 // Call functions
 
-showPage(data, 5);
+showPage(data, 1);
 addPagination(data);
