@@ -5,18 +5,19 @@ const linkList = document.querySelector(".link-list");
 /*
 Create and insert/append the elements needed to display a "page" of nine students
 */
-
 function showPage(list, page) {
   const startIndex = page * 9 - 9;
   const endIndex = page * 9;
   studentList.innerHTML = "";
 
   for (let i = 0; i < list.length; i++) {
+    // assigning to info to variables for readability
     let firstName = list[i].name.first;
     let lastName = list[i].name.last;
     let picture = list[i].picture.large;
     let email = list[i].email;
     let register = list[i].registered.date;
+    // inserting html
     if (i >= startIndex && i < endIndex) {
       studentList.insertAdjacentHTML(
         "beforeend",
@@ -39,7 +40,6 @@ function showPage(list, page) {
 /*
 Create and insert/append the elements needed for the pagination buttons
 */
-
 function addPagination(list) {
   linkList.innerHTML = `<li>
   <button type="button" class="active">1</button>
@@ -54,6 +54,8 @@ function addPagination(list) {
   }
 }
 
+// removes/adds active class
+// displays corresponding list to button #
 linkList.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
     let buttons = document.querySelectorAll("button[type='button']");
@@ -66,6 +68,5 @@ linkList.addEventListener("click", (e) => {
 });
 
 // Call functions
-
 showPage(data, 1);
 addPagination(data);
