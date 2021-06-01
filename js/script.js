@@ -91,6 +91,9 @@ function filterSearch(searchInput, list) {
       // return list[i];
     }
   }
+  if (searchInput.value.length === 0) {
+    return list;
+  }
   console.log(newList);
   return newList;
 }
