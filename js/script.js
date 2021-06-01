@@ -72,23 +72,22 @@ function addPagination(list) {
 filter search
 */
 function filterSearch(searchInput, list) {
-  console.log(searchInput.value);
+  // console.log(searchInput.value);
   let newList = [];
 
   for (let i = 0; i < list.length; i++) {
     let firstName = list[i].name.first;
     let lastName = list[i].name.last;
     let fullName = `${firstName} ${lastName}`;
-    // console.log(list[i]);
     if (fullName.toLowerCase().includes(searchInput.value.toLowerCase())) {
       newList.push(list[i]);
-      // return list[i];
     }
   }
   if (searchInput.value.length === 0) {
     return list;
   }
   if (newList.length === 0) {
+    linkList.style.display = "none";
     studentList.insertAdjacentHTML(
       "beforeend",
       `
@@ -96,7 +95,10 @@ function filterSearch(searchInput, list) {
     `
     );
   }
-  console.log(newList);
+  if (newList.length > 0) {
+    linkList.style.display = "";
+  }
+  // console.log(newList);
   return newList;
 }
 
@@ -130,3 +132,6 @@ linkList.addEventListener("click", (e) => {
 // Call functions
 showPage(data, 1);
 addPagination(data);
+
+let pageButtons = document.querySelector("li button");
+console.log(pageButtons);
