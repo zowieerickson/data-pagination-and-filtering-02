@@ -52,29 +52,6 @@ function showPage(list, page) {
 }
 
 /*
-filter search
-*/
-
-function filterSearch(searchInput, list) {
-  console.log(searchInput.value);
-  console.log(list);
-  for (let i = 0; i < list.length; i++) {
-    let firstName = list[i].name.first;
-    let lastName = list[i].name.last;
-    let fullName = `${firstName} ${lastName}`;
-    if (fullName.toLowerCase().includes(searchInput.value.toLowerCase())) {
-      console.log(fullName);
-    }
-  }
-}
-
-search.addEventListener("keyup", () => {
-  filterSearch(search, data);
-
-  console.log("Keyup function is working");
-});
-
-/*
 Create and insert/append the elements needed for the pagination buttons
 */
 function addPagination(list) {
@@ -91,9 +68,40 @@ function addPagination(list) {
   }
 }
 
-// Call functions
-showPage(data, 1);
-addPagination(data);
+/*
+filter search
+*/
+const li = document.querySelectorAll("student-item");
+for (let i = 0; i < li.length; i++) {
+  console.log(li[i]);
+}
+
+function filterSearch(searchInput, list) {
+  console.log(searchInput.value);
+  let newList = [];
+
+  for (let i = 0; i < list.length; i++) {
+    let firstName = list[i].name.first;
+    let lastName = list[i].name.last;
+    let fullName = `${firstName} ${lastName}`;
+    // console.log(list[i]);
+    if (fullName.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      newList.push(list[i]);
+      console.log(fullName);
+      // return list[i];
+    }
+  }
+  console.log(newList);
+  return newList;
+}
+
+search.addEventListener("keyup", () => {
+  filterSearch(search, data);
+  showPage(filterSearch(search, data), 1);
+  // console.log(filterSearch(search, data));
+
+  console.log("Keyup function is working");
+});
 
 // Event Listeners
 
@@ -110,41 +118,6 @@ linkList.addEventListener("click", (e) => {
   }
 });
 
-/*
-Filter student data, displays only students whose names includes search.value
-*/
-
-/*
-const search = document.querySelector("#search");
-console.log(search);
-console.log(search.value);
-
-function filterStudents(list, page) {
-  let text = search.value;
-  console.log(text);
-  console.log(list);
-  for (let i = 0; i < list.length; i++) {
-    let firstName = list[i].name.first;
-    let lastName = list[i].name.last;
-    let fullName = `${firstName[i]} ${lastName[i]}`;
-    //  console.log(firstName);
-    //  if (firstName.includes(text)) {
-    //    console.log(firstName);
-    //  }
-  }
-}
-
-// search.addEventListener("keyup", filterStudents(data));
-
-for (let i = 0; i < list.length; i++) {
-  console.log(list[i]);
-
-  search.addEventListener("keyup", test);
-}
-
-function test(data) {
-  console.log(search.value);
-  console.log(data);
-}
-test(data);
-*/
+// Call functions
+showPage(data, 1);
+addPagination(data);
