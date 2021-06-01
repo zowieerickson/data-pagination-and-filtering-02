@@ -71,11 +71,6 @@ function addPagination(list) {
 /*
 filter search
 */
-const li = document.querySelectorAll("student-item");
-for (let i = 0; i < li.length; i++) {
-  console.log(li[i]);
-}
-
 function filterSearch(searchInput, list) {
   console.log(searchInput.value);
   let newList = [];
@@ -87,21 +82,32 @@ function filterSearch(searchInput, list) {
     // console.log(list[i]);
     if (fullName.toLowerCase().includes(searchInput.value.toLowerCase())) {
       newList.push(list[i]);
-      console.log(fullName);
       // return list[i];
     }
   }
   if (searchInput.value.length === 0) {
     return list;
   }
+  if (newList.length === 0) {
+    studentList.insertAdjacentHTML(
+      "beforeend",
+      `
+    <p>No results found</p>
+    `
+    );
+  }
   console.log(newList);
   return newList;
 }
 
+/*
+filter search
+*/
+
 search.addEventListener("keyup", () => {
   filterSearch(search, data);
   showPage(filterSearch(search, data), 1);
-  // console.log(filterSearch(search, data));
+  addPagination(filterSearch(search, data));
 
   console.log("Keyup function is working");
 });
